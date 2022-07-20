@@ -1,14 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Button from "./Button";
 import Home from "./Home";
-import HomePage from "./HomePage";
-import Login from "./Login";
-import Signup from "./Signup";
+
+
 const Navbar = () => {
+    
+    const token = localStorage.getItem("token");
+
+
     return (
         <>
-        <Home/>
+            <Home />
             <header className="text-gray-400 body-font relative">
                 <div className="container mx-auto flex flex-wrap p-5   md:flex-row justify-between items-center ">
                     <Link
@@ -34,20 +37,27 @@ const Navbar = () => {
                             Search
                         </button>
                     </form>
-                    <div className="basis-1/4 text-end">
 
-                   <Link to='/signup' >
-                    <Button
-                        hoverColor={"bg-gray-700"}
-                        margin={"text-base  "}
-                        name={"Signup"}/>
-                        </Link>
-                        <Link to='login'>
-                     <Button
-                        hoverColor={"bg-gray-700"}
-                        margin={"text-base ml-2  "}
-                        name={"Login"}
-                    /></Link>
+                    <div className="basis-1/4 text-end">
+                        {token === null ?
+                            
+
+                           <>
+                                <Link to='/signup' >
+                                    <Button
+                                        hoverColor={"bg-gray-700"}
+                                        margin={"text-base  "}
+                                        name={"Signup"} />
+                                </Link>
+                                <Link to='login'>
+                                    <Button
+                                        hoverColor={"bg-gray-700"}
+                                        margin={"text-base ml-2  "}
+                                        name={"Login"}
+                                    /></Link>
+                            </>:
+                            <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+                            }
                     </div>
 
                 </div>
